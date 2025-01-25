@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser';
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'motion/react'
 import { transition } from 'three/examples/jsm/tsl/display/TransitionNode.js';
-import ContactSVG from './ContactSVG';
+import ContactSVG from './ContactSvg.jsx';
 
 
 const listVariant = {
