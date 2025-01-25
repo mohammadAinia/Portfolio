@@ -1,6 +1,58 @@
+// import Hero from "./components/hero/Hero"
+// import Portfolio from "./components/portfolio/Portfolio"
+// import Services from "./components/services/Services"
+// import Contact from "./components/contact/Contact"
+
+import { lazy, Suspense } from "react"
+import LazyLoad from "react-lazyload"
+
+//Because the site contains heavy and many animations, and in order for the site to be faster,
+//  we will load the site section by section, not all at once.
+const Hero = lazy(() => import("./components/hero/Hero"))
+const Services = lazy(() => import("./components/services/Services"))
+const Portfolio = lazy(() => import("./components/portfolio/Portfolio"))
+const Contact = lazy(() => import("./components/contact/Contact"))
+
+
 const App = () => {
   return (
-    <div className=''>Hello World</div>
+    <div className='container'>
+      <Suspense fallback={"loading..."}>
+        <LazyLoad height={"100vh"} offset={-100}>
+          <section id="#home">
+            <Hero />
+          </section>
+        </LazyLoad>
+      </Suspense>
+
+
+      <Suspense fallback={"loading..."}>
+        <LazyLoad height={"100vh"} offset={-100}>
+          <section id="#services">
+            <Services />
+          </section>
+        </LazyLoad>
+      </Suspense>
+
+
+      {/* <section id="#portfolio"> */}
+      <Suspense fallback={"loading..."}>
+        <LazyLoad height={"600vh"} offset={-100}>
+          <Portfolio />
+
+        </LazyLoad>
+      </Suspense>
+      {/* </section> */}
+
+      <Suspense fallback={"loading..."}>
+        <LazyLoad height={"100vh"} offset={-100}>
+          <section id="#contact">
+            <Contact />
+          </section>
+        </LazyLoad>
+      </Suspense>
+
+    </div>
   )
 }
 
